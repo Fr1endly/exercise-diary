@@ -1,6 +1,5 @@
 import { Outlet, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
-import { Root } from 'postcss'
 import React from 'react'
 
 // export const Route = createRootRouteWithContext<{
@@ -65,7 +64,7 @@ export const Route = createRootRoute({
   component: () => (
     <RootDocument>
       <Outlet />
-      <TanStackRouterDevtools />
+      {process.env.NODE_ENV === 'development' && <TanStackRouterDevtools />}
     </RootDocument>
   ),
 })

@@ -4,32 +4,6 @@ import { motion } from 'motion/react'
 
 
 
-const _excerciseData = {
-    name: "Lat pulldown",
-    sets: 3,
-    reps: [
-        {
-            number: 1,
-            weight: 50
-        },
-        {
-            number: 2,
-            weight: 50
-        },
-        {
-            number: 3,
-            weight: 50
-        },
-        {
-            number: 4,
-            weight: 50
-        },
-        {
-            number: 5,
-            weight: 50
-        }
-    ]
-}
 
 
 
@@ -53,7 +27,7 @@ const buildNums = (middleNum: number): number[] => {
         {
             length: 4
         },
-        (_, i) => {
+        () => {
             num = num - minFactor
             return (num)
         }
@@ -63,7 +37,7 @@ const buildNums = (middleNum: number): number[] => {
         {
             length: 5
         },
-        (_, i) => {
+        () => {
             num2 = num2 + minFactor
             return (num2)
         }
@@ -78,15 +52,12 @@ interface DragInputProps {
     repWieght: number
 }
 export default ({ repWieght }: DragInputProps) => {
-    const [nums, setNums] = useState(buildNums(repWieght))
-
+    const nums = buildNums(repWieght)
     const containerRef = useRef<HTMLDivElement>(null)
     const targetRef = useRef<HTMLDivElement>(null)
     const [heightPercent, setHeightPercent] = useState(50)
     const [isDragging, setIsDragging] = useState(false)
-    const [selectedIndex, setSelectedIndex] = useState(5)
     const [selectedNumber, setSelectedNumber] = useState(nums[5])
-    const [excerciseData, setExerciseData] = useState(_excerciseData)
 
     useEffect(() => {
         console.log(nums)
@@ -118,9 +89,6 @@ export default ({ repWieght }: DragInputProps) => {
     useEffect(() => {
         let index = Math.floor(toInteger(heightPercent.toPrecision(1)) / nums.length - 1)
         if (index < 0) index = 0
-        console.log("PERCENTAGE: ", heightPercent, " \nfloored", Math.floor(heightPercent))
-        console.log("INDEX: ", index)
-        setSelectedIndex(index)
         setSelectedNumber(nums[index])
     }, [heightPercent])
 

@@ -1,11 +1,7 @@
-import { useState } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import '../App.css'
-import type { Workout, Exercise } from '@/types';
-import { Button } from '@/components/ui/button'
-
+import type { Exercise } from '@/types';
 import Layout from '@/components/ui/layout'
-import DragInput from '@/components/ui/DragInput'
 
 
 export const Route = createFileRoute('/')({
@@ -100,9 +96,6 @@ const workoutData = [
 ]
 
 
-interface TestViewProps {
-  data: Exercise
-}
 
 
 interface TitleSlotProps {
@@ -166,9 +159,7 @@ const MainSlot = ({ exercise, className }: MainSlotProps) => {
 }
 
 function App() {
-  const [data, setData] = useState<Workout>(workoutData[0])
-  // const [excerciseData, setExerciseData] = useState(excerciseData)
-  const [view, setView] = useState("index")
+  const data = workoutData[0]
 
 
   return (

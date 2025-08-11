@@ -10,9 +10,6 @@ interface LayoutProps {
     className?: string
 }
 
-interface HeaderProps {
-    children: ReactNode
-}
 
 
 export function Header() {
