@@ -1,1 +1,0 @@
-import{j as e}from"./index-BBk_HJBi.js";import{L as s}from"./layout-KhBLG3fi.js";const i=function(){return e.jsx(s,{slot1:e.jsxs("div",{className:"flex-1 w-full",children:[e.jsx("h1",{className:"text-xl",children:"Exercise Details"}),e.jsx("div",{className:"text-center py-8",children:e.jsx("p",{children:"No exercise selected"})})]})})};export{i as component};
