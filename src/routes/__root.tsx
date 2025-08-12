@@ -64,7 +64,7 @@ export const Route = createRootRoute({
   component: () => (
     <RootDocument>
       <Outlet />
-      {process.env.NODE_ENV === 'development' && <TanStackRouterDevtools />}
+      {/* {process.env.NODE_ENV === 'development' && <TanStackRouterDevtools />} */}
     </RootDocument>
   ),
 })
@@ -81,7 +81,7 @@ const RootDocument = (children: rootDocumentProps) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>My App</title>
       </head>
-      <body className='bg-amber-100'>
+      <body className=''>
         {children.children}
       </body>
     </html>
