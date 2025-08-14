@@ -166,19 +166,26 @@ interface TitleSlotProps {
 
 const TitleSlot = ({ title, attributesDict, className }: TitleSlotProps) => {
     return (
-        <div className={className ?? 'w-full z-10 h-full '}>
-            <h1 className='text-xl'>{title}</h1>
-            {attributesDict && Object.keys(attributesDict).map((key) => (
-                <>
-                    <div key={key} className='text-xl flex justify-between items-end pt-5 font-main '>
-                        <span className='font-bold'>{key}:</span>
-                        <span className='text-3xl shadow-lg'>
-                            {attributesDict[key]}
-                        </span>
-                    </div>
-                    <Separator className="bg-neutral-300" orientation="horizontal" />
-                </>
-            ))}
+        <div
+            className="
+                w-full rounded-b-sm px-4 sticky top-0 z-20 bg-gradient-to-tr
+                from-zinc-950 via-zinc-900 to-zinc-800 pb-10
+            "
+        >
+            <div className={className ?? 'w-full z-10 h-full '}>
+                <h1 className='text-xl'>{title}</h1>
+                {attributesDict && Object.keys(attributesDict).map((key, index) => (
+                    <>
+                        <div key={index} className='text-xl flex justify-between items-end pt-5 font-main '>
+                            <span className='font-bold'>{key}:</span>
+                            <span className='text-3xl shadow-lg font-bold'>
+                                {attributesDict[key]}
+                            </span>
+                        </div>
+                        <Separator className="bg-neutral-300" orientation="horizontal" key={index + "s"} />
+                    </>
+                ))}
+            </div>
         </div>
     )
 }
@@ -190,32 +197,38 @@ interface MainSlotProps {
 
 const MainSlot = ({ exercise, className }: MainSlotProps) => {
     return (
-        <div className={className ?? 'flex-1 w-full'}>
-            <h3 className='text-lg px-2'>Exercises</h3>
-            {exercise ? (
-                <div className="space-y-4">
-                    <h2 className="text-2xl font-bold px-4 pb-4">{exercise.name}</h2>
-                    <div className="grid gap-4">
-                        {exercise.sets.map((setGroup, groupIndex) => (
-                            <div key={groupIndex} className="border p-4 rounded-xs">
-                                <h3 className="text-lg font-semibold mb-2">Set Group {groupIndex + 1}</h3>
-                                <div className="space-y-2">
-                                    {setGroup.map((set, setIndex) => (
-                                        <div key={setIndex} className="flex items-center gap-4">
-                                            <span>Set {set.number}</span>
-                                            <span>{set.weight} kg</span>
-                                        </div>
-                                    ))}
+        <div
+            className=" w-full pb-10 py-5 px-1.5 rounded-sm shadow-md bg-zinc-800
+            
+            "
+        >
+            <div className={className ?? 'flex-1 w-full'}>
+                <h3 className='text-lg px-2'>Exercises</h3>
+                {exercise ? (
+                    <div className="space-y-4">
+                        <h2 className="text-2xl font-bold px-4 pb-4">{exercise.name}</h2>
+                        <div className="grid gap-4">
+                            {exercise.sets.map((setGroup, groupIndex) => (
+                                <div key={groupIndex} className="border p-4 rounded-xs">
+                                    <h3 className="text-lg font-semibold mb-2">Set Group {groupIndex + 1}</h3>
+                                    <div className="space-y-2">
+                                        {setGroup.map((set, setIndex) => (
+                                            <div key={setIndex} className="flex items-center gap-4">
+                                                <span>Set {set.number}</span>
+                                                <span>{set.weight} kg</span>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
-                </div>
-            ) : (
-                <div className="text-center py-8">
-                    <p>No exercise selected</p>
-                </div>
-            )}
+                ) : (
+                    <div className="text-center py-8">
+                        <p>No exercise selected</p>
+                    </div>
+                )}
+            </div>
         </div>
     )
 }

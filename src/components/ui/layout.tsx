@@ -24,7 +24,7 @@ export function Header() {
             <Separator className="mt-3 bg-neutral-950" />
             <div className="flex h-5 items-center justify-between text-sm text-foreground">
                 <Separator className="bg-neutral-950" orientation="vertical" />
-                <Link to="/" className="cursor-pointer hover:text-neutral-400 transition-colors px-1.5">
+                <Link to="/workout" className="cursor-pointer hover:text-neutral-400 transition-colors px-1.5">
                     Workout
                 </Link>
                 <Separator className="bg-neutral-950" orientation="vertical" />
@@ -32,54 +32,60 @@ export function Header() {
                     Exercise
                 </Link>
                 <Separator className="bg-neutral-950" orientation="vertical" />
-                <div className="cursor-pointer px-1.5">Calendar</div>
+                <Link to="/" className="cursor-pointer hover:text-neutral-400 transition-colors px-1.5">
+                    Home
+                </Link>
                 <Separator className="bg-neutral-950" orientation="vertical" />
                 <div className="cursor-pointer px-1.5">Share</div>
                 <Separator className="bg-neutral-950" orientation="vertical" />
             </div>
             <Separator className="mb-3 bg-neutral-950" />
+
         </div>
+    )
+}
+
+interface ContainerProps {
+    children: ReactNode
+    className?: string
+}
+
+const Container = ({ children, className }: ContainerProps) => {
+    return (
+        <motion.div
+            className={`w-full h-full rounded-sm bg-slate-900 text-neutral-200 relative
+                            font-display flex items-center justify-between flex-col overflow-y-auto overflow-x-hidden
+                            ${className}`}
+            initial={{ scale: 0.5 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0.35 }}
+            transition={{
+                duration: 0.2
+            }}
+        >
+            {children}
+            {/* <>
+                <div className="h-10" />
+                <div className="w-full px-4 h-10 bg-neutral-950 sticky bottom-0 z-10 text-center">
+                    BUTTONS
+                </div>
+            </> */}
+
+        </motion.div>
     )
 }
 
 const Layout = ({ slot1, slot2, className = '' }: LayoutProps) => {
 
     return (
-        <div className="h-screen w-full flex flex-col items-center justify-start bg-slate-200 relative"
-
+        <div className="h-screen w-full flex flex-col items-center justify-start bg-slate-200 relative px-2 pb-1"
         >
             <Header />
-            <motion.div
-                className={`w-full h-full rounded-sm bg-neutral-800 text-neutral-200 relative
-                            font-display flex items-center justify-start flex-col overflow-y-auto overflow-x-hidden
-                            ${className}`}
-                initial={{ scale: 0.5 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0.35 }}
-                transition={{
-                    duration: 0.2
-                }}
-            >
-                <div className="sticky top-0 z-10 w-full pb-10 py-5 px-1.5
-                                bg-gradient-to-t from-neutral-900
-                                via-stone-900 via-95% to-neutral-950 rounded-sm shadow-md mb-5"
+            <Container className={className}>
+                {slot1}
+                {slot2}
+            </Container>
 
-                >
-                    {slot1}
-                </div>
-                <div className="w-full px-4">
-                    {slot2}
-                </div>
-
-
-                <>
-                    <div className="h-60" />
-                    <div className="w-full px-4 h-60 bg-neutral-950 sticky bottom-0 text-center">
-                        BUTTONS
-                    </div>
-                </>
-
-            </motion.div>
         </div>
     )
 }
