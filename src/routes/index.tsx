@@ -33,7 +33,7 @@ const MainSection = ({ data }: MainSectionProps) => {
   const [current, setCurrent] = useState(0)
   const [count, setCount] = useState(0)
 
-  const activeWorkout = useStore(state => state.profile.activeWorkout)
+  // const activeWorkout = useStore(state => state.profile.activeWorkout)
 
   const setActiveWorkout = (workout: Workout) => {
     useStore.setState({ profile: { ...useStore.getState().profile, activeWorkout: workout } })
